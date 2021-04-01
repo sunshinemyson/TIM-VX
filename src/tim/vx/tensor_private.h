@@ -39,7 +39,7 @@ class TensorImpl : public Tensor {
   bool IsWriteable();
   bool IsReadable();
 
-  const ShapeType& GetShape() { return spec_.shape_; }
+  ShapeType& GetShape() { return spec_.shape_; }
   DataType GetDataType() { return spec_.datatype_; }
   const Quantization& GetQuantization() { return spec_.quantization_; }
   const TensorSpec& GetSpec() { return spec_; }
@@ -62,7 +62,7 @@ class TensorPlaceholder : public Tensor {
   TensorPlaceholder(Graph* graph) : id_(VSI_NN_TENSOR_ID_NA) {}
   ~TensorPlaceholder(){};
 
-  const ShapeType& GetShape() { return spec_.shape_; }
+  ShapeType& GetShape() { return spec_.shape_; }
   DataType GetDataType() { return spec_.datatype_; }
   const Quantization& GetQuantization() { return spec_.quantization_; }
   const TensorSpec& GetSpec() { return spec_; }

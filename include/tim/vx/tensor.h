@@ -117,11 +117,48 @@ struct TensorSpec {
     return *this;
   }
 
-  TensorSpec AsTransientSpec() const {
-    return TensorSpec(this->datatype_, ShapeType({}),
-                      TensorAttribute::TRANSIENT, this->quantization_);
+  TensorSpec AsTransientSpec(const std::vector<uint32_t>& perm =
+                                 std::vector<uint32_t>({0, 1, 2, 3})) const {
+    ShapeType final_shape(perm.size());
+    for (auto i = 0U; i < perm.size(); ++i) {
+      final_shape[i] = this->shape_[perm[i]];
+    }
+
+    return TensorSpec(this->datatype_, final_shape, TensorAttribute::TRANSIENT,
+                      this->quantization_);
   }
 
+  uint32_t MemSize() const {
+    uint32_t sz_in_bytes = 1;
+    for (auto d : shape_) {
+      sz_in_bytes *= d;
+    }
+
+    return sz_in_bytes * SizeOfDataType(datatype_);
+  }
+
+  private:
+  uint32_t SizeOfDataType(DataType dt) const {
+    switch (datatype_)
+    {
+    case DataType::INT8:
+    case DataType::UINT8:
+      return 1;
+    case DataType::INT16:
+    case DataType::UINT16:
+    case DataType::FLOAT16:
+      return 2;
+    case DataType::INT32:
+    case DataType::UINT32:
+    case DataType::FLOAT32:
+      return 4;
+    default:
+      // assert(0);
+      break;
+    }
+  }
+
+  public:
   DataType datatype_;
   ShapeType shape_;
   TensorAttribute attr_;
@@ -131,7 +168,7 @@ struct TensorSpec {
 class Tensor {
  public:
   virtual ~Tensor() {}
-  virtual const ShapeType& GetShape() = 0;
+  virtual ShapeType& GetShape() = 0;
   virtual DataType GetDataType() = 0;
   virtual const Quantization& GetQuantization() = 0;
   virtual const TensorSpec& GetSpec() = 0;
