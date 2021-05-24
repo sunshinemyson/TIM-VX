@@ -40,8 +40,8 @@ jobs:
         cd ${{github.workspace}}/build/src/tim/
         ./unit_test
         lcov -d . -c -o coverage.info
-        lcov -r lcov.info '/usr/*' -o lcov.info
-        lcov --list lcov.info
+        lcov -r coverage.info '/usr/*' -o coverage.info
+        lcov --list coverage.info
     - name: lcov-reporter
       uses: romeovs/lcov-reporter-action@v0.2.16
       with:

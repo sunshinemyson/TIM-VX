@@ -1,3 +1,5 @@
+https://github.com/sunshinemyson/TIM-VX.git/actions/workflows/code-coverage.yml/badge.svg
+
 # TIM-VX - Tensor Interface Module for OpenVX
 
 TIM-VX is a software integration module provided by VeriSilicon to facilitate deployment of Neural-Networks on OpenVX enabled ML accelerators. It serves as the backend binding for runtime frameworks such as Android NN, Tensorflow-Lite, MLIR, TVM and more.
