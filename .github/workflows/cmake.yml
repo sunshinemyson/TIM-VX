@@ -31,7 +31,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: UnitTest_VSim_x86
-      run |
+      run: |
       export LD_LIBRARY_PATH=`pwd`/prebuilt-sdk/x86_64_linux/lib
       export VIVANTE_SDK_DIR=`pwd`/prebuilt-sdk/x86_64_linux/
       cd ${{github.workspace}}/build/src/tim/
