@@ -1,4 +1,4 @@
-https://github.com/sunshinemyson/TIM-VX.git/actions/workflows/code-coverage.yml/badge.svg
+![code coverage status](https://github.com/sunshinemyson/TIM-VX.git/actions/workflows/code-coverage.yml/badge.svg)
 
 # TIM-VX - Tensor Interface Module for OpenVX
 
