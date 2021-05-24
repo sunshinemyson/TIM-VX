@@ -32,10 +32,10 @@ jobs:
 
     - name: UnitTest_VSim_x86
       run: |
-      export LD_LIBRARY_PATH=`pwd`/prebuilt-sdk/x86_64_linux/lib
-      export VIVANTE_SDK_DIR=`pwd`/prebuilt-sdk/x86_64_linux/
-      cd ${{github.workspace}}/build/src/tim/
-      ./unit_test
+        export LD_LIBRARY_PATH=`pwd`/prebuilt-sdk/x86_64_linux/lib
+        export VIVANTE_SDK_DIR=`pwd`/prebuilt-sdk/x86_64_linux/
+        cd ${{github.workspace}}/build/src/tim/
+        ./unit_test
 
 #     - name: Test
 #       working-directory: ${{github.workspace}}/build
