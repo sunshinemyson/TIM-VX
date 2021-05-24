@@ -36,6 +36,7 @@ jobs:
         export VIVANTE_SDK_DIR=`pwd`/prebuilt-sdk/x86_64_linux/
         cd ${{github.workspace}}/build/src/tim/
         ./unit_test
+        cd -
 
 #     - name: Test
 #       working-directory: ${{github.workspace}}/build
